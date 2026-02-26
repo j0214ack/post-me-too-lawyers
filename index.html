@@ -347,6 +347,44 @@
             .collab-grid { grid-template-columns: 1fr; }
             .price-main { flex-direction: column; gap: 8px; }
             .timeline li { grid-template-columns: 80px 1fr; gap: 16px; }
+
+            /* Table → stacked cards on mobile */
+            table thead { display: none; }
+            table, tbody, tr, td { display: block; width: 100%; }
+            .group-header { margin-top: 20px; }
+            .group-header td {
+                padding: 12px 0 4px !important;
+            }
+            tbody tr:not(.group-header) {
+                padding: 16px 0;
+                border-bottom: 1px solid var(--rule);
+            }
+            tbody td {
+                padding: 0 !important;
+                border-bottom: none !important;
+                white-space: normal !important;
+            }
+            tbody td:first-child {
+                font-size: 0.95rem;
+                margin-bottom: 4px;
+            }
+            tbody td:nth-child(2) {
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+            }
+            tbody td:nth-child(3) {
+                text-align: left !important;
+                display: inline-block;
+                width: auto;
+            }
+            tbody td:nth-child(4) {
+                display: inline-block;
+                width: auto;
+                margin-left: 8px;
+                font-weight: 500;
+                color: var(--accent);
+            }
+            tbody td:nth-child(4):empty { display: none; }
         }
 
         /* ── Print ── */
@@ -497,69 +535,81 @@
                     <th>項目</th>
                     <th>說明</th>
                     <th>類別</th>
+                    <th>報價</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="group-header"><td colspan="3">核心功能</td></tr>
+                <tr class="group-header"><td colspan="4">核心功能</td></tr>
                 <tr>
                     <td>人設建模</td>
                     <td>7 位律師訪談稿結構化處理；為每位律師撰寫獨立 System Prompt，定義法律立場、說話語氣與價值觀</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>核心對話系統</td>
                     <td>LLM API 串接、串流輸出（Streaming）與打字機效果實作</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>UI 介面開發</td>
                     <td>律師角色選擇介面（頭像/代號）、8–10 個引導問題按鈕、響應式設計；視覺設計由甲方主導提供</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
 
-                <tr class="group-header"><td colspan="3">安全與預算控管</td></tr>
+                <tr class="group-header"><td colspan="4">安全與預算控管</td></tr>
                 <tr>
                     <td>內容邊界防護</td>
                     <td>離題問題自動導回性平議題、攻擊性言論過濾、提示詞注入防禦</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>預算熔斷機制</td>
                     <td>API 月度使用上限設定，超額自動暫停服務</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>限流與流量防護</td>
                     <td>限制單一使用者發言頻率，配置 WAF 阻擋惡意機器人與 DDoS 攻擊</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>內容審查</td>
                     <td>訊息送交 LLM 前先經內容審查機制過濾，違規內容直接拒絕，不消耗模型額度</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
 
                 <tr>
                     <td>基本流量統計</td>
                     <td>嵌入流量統計工具（如 Google Analytics），追蹤訪客數、裝置分佈、停留時間等基本指標</td>
                     <td><span class="tag tag-req">必要</span></td>
+                    <td></td>
                 </tr>
 
-                <tr class="group-header"><td colspan="3">加值項目</td></tr>
+                <tr class="group-header"><td colspan="4">加值項目</td></tr>
                 <tr>
                     <td>語意快取</td>
                     <td>相似問題重用已生成回答，降低約 30%+ API 成本並提升回應速度</td>
                     <td><span class="tag tag-opt">加選</span></td>
+                    <td>NT$5,000</td>
                 </tr>
                 <tr>
                     <td>對話行為分析</td>
                     <td>自訂 logging 記錄觀眾最常問的問題、偏好律師、對話輪數等，展後提供去識別化研究報告</td>
                     <td><span class="tag tag-opt">加選</span></td>
+                    <td>NT$5,000</td>
                 </tr>
                 <tr>
                     <td>多語言擴充</td>
                     <td>預留介面語言切換與 Prompt 翻譯空間，供未來國際交流需求</td>
                     <td><span class="tag tag-opt">加選</span></td>
+                    <td>NT$3,000</td>
                 </tr>
             </tbody>
         </table>
