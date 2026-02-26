@@ -185,12 +185,17 @@
             text-transform: uppercase;
             color: var(--ink-muted);
             text-align: left;
-            padding: 0 0 12px 0;
+            padding: 0 12px 12px 0;
             border-bottom: 1px solid var(--ink);
         }
 
+        thead th:nth-child(3),
+        thead th:nth-child(4) {
+            text-align: right;
+        }
+
         tbody td {
-            padding: 14px 0;
+            padding: 14px 12px 14px 0;
             border-bottom: 1px solid var(--rule);
             color: var(--ink-light);
             vertical-align: top;
@@ -199,13 +204,13 @@
         tbody td:first-child {
             font-weight: 500;
             color: var(--ink);
-            padding-right: 16px;
             white-space: nowrap;
         }
 
         tbody td:nth-child(3) {
             text-align: right;
             white-space: nowrap;
+            padding-left: 16px;
         }
 
         tbody td:nth-child(4) {
@@ -213,6 +218,8 @@
             white-space: nowrap;
             font-weight: 500;
             color: var(--accent);
+            padding-left: 16px;
+            padding-right: 0;
         }
 
         .tag {
