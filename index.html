@@ -203,9 +203,16 @@
             white-space: nowrap;
         }
 
-        tbody td:last-child {
+        tbody td:nth-child(3) {
             text-align: right;
             white-space: nowrap;
+        }
+
+        tbody td:nth-child(4) {
+            text-align: right;
+            white-space: nowrap;
+            font-weight: 500;
+            color: var(--accent);
         }
 
         .tag {
@@ -548,7 +555,7 @@
                 </tr>
                 <tr>
                     <td>核心對話系統</td>
-                    <td>LLM API 串接、串流輸出（Streaming）與打字機效果實作</td>
+                    <td>LLM API 串接、串流輸出（Streaming）與打字機效果實作；引導問題回答預先快取，降低 API 消耗</td>
                     <td><span class="tag tag-req">必要</span></td>
                     <td></td>
                 </tr>
@@ -593,12 +600,6 @@
                 </tr>
 
                 <tr class="group-header"><td colspan="4">加值項目</td></tr>
-                <tr>
-                    <td>語意快取</td>
-                    <td>相似問題重用已生成回答，降低約 30%+ API 成本並提升回應速度</td>
-                    <td><span class="tag tag-opt">加選</span></td>
-                    <td>NT$5,000</td>
-                </tr>
                 <tr>
                     <td>對話行為分析</td>
                     <td>自訂 logging 記錄觀眾最常問的問題、偏好律師、對話輪數等，展後提供去識別化研究報告</td>
