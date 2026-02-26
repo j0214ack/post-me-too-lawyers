@@ -3,172 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>「後 #Metoo」展覽 AI 律師對話系統 - 開發提案</title>
+    <title>「後 #MeToo」展覽 AI 律師對話系統 — 開發提案</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #c0392b;
-            --bg-color: #f9f9f9;
-            --card-bg: #ffffff;
-            --text-color: #333;
-            --secondary-text: #666;
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --ink-muted: #8a8a8a;
+            --surface: #f6f4f0;
+            --paper: #fffdf9;
+            --rule: #d4d0c8;
+            --accent: #8b2500;
+            --accent-soft: rgba(139, 37, 0, 0.08);
+            --tag-blue: #2a4a6b;
+            --tag-blue-bg: rgba(42, 74, 107, 0.07);
+            --tag-amber: #7a5c1f;
+            --tag-amber-bg: rgba(122, 92, 31, 0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
+            font-family: "Noto Sans TC", sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--ink);
+            background-color: var(--surface);
         }
 
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: var(--card-bg);
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-radius: 8px;
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 40px 120px;
         }
 
+        /* ── Header ── */
         header {
-            border-bottom: 2px solid var(--primary-color);
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            text-align: center;
+            padding-bottom: 48px;
+            margin-bottom: 56px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .header-label {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-bottom: 24px;
         }
 
         h1 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 1.8rem;
+            font-family: "Noto Serif TC", serif;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1.4;
+            color: var(--ink);
+            letter-spacing: 0.02em;
+        }
+
+        h1 em {
+            font-style: normal;
+            color: var(--accent);
         }
 
         .subtitle {
-            color: var(--secondary-text);
+            font-weight: 300;
             font-size: 1rem;
-            margin-top: 10px;
+            color: var(--ink-muted);
+            margin-top: 12px;
+        }
+
+        /* ── Sections ── */
+        section {
+            margin-bottom: 56px;
         }
 
         h2 {
-            color: var(--primary-color);
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-            margin-top: 40px;
-            font-size: 1.4rem;
+            font-family: "Noto Serif TC", serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--ink);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--rule);
         }
 
-        .section {
-            margin-bottom: 30px;
+        h2 span.num {
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 400;
+            font-size: 1.05rem;
+            color: var(--ink-muted);
+            margin-right: 8px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+        p {
+            color: var(--ink-light);
+            margin-bottom: 16px;
         }
 
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .badge-must { background-color: #e8f4fd; color: #2980b9; }
-        .badge-opt { background-color: #fef9e7; color: #f39c12; }
-
-        .price-box {
-            background: #fdf2f2;
-            border: 1px dashed var(--accent-color);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .price-tag {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
+        /* ── Collaboration Grid ── */
         .collab-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 1px;
+            background: var(--rule);
+            margin-top: 24px;
         }
 
         .collab-card {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
+            background: var(--paper);
+            padding: 28px 24px;
         }
 
         .collab-card h4 {
-            margin-top: 0;
-            color: var(--primary-color);
+            font-family: "Noto Serif TC", serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--ink);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: var(--secondary-text);
+        .collab-card .icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            flex-shrink: 0;
+        }
+
+        .icon-art { background: var(--accent-soft); color: var(--accent); }
+        .icon-tech { background: var(--tag-blue-bg); color: var(--tag-blue); }
+
+        .collab-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .collab-card li {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            padding: 6px 0;
+            line-height: 1.6;
+        }
+
+        .collab-card li + li {
+            border-top: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .collab-card li strong {
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        /* ── Table ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
             font-size: 0.9rem;
         }
 
+        thead th {
+            font-weight: 500;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            text-align: left;
+            padding: 0 0 12px 0;
+            border-bottom: 1px solid var(--ink);
+        }
+
+        tbody td {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--rule);
+            color: var(--ink-light);
+            vertical-align: top;
+        }
+
+        tbody td:first-child {
+            font-weight: 500;
+            color: var(--ink);
+            padding-right: 16px;
+            white-space: nowrap;
+        }
+
+        tbody td:last-child {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+
+        .tag-req { background: var(--tag-blue-bg); color: var(--tag-blue); }
+        .tag-opt { background: var(--tag-amber-bg); color: var(--tag-amber); }
+
+        /* ── Price Block ── */
+        .price-block {
+            background: var(--paper);
+            border: 1px solid var(--rule);
+            padding: 32px;
+            margin-top: 24px;
+        }
+
+        .price-main {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .price-main .label {
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .price-main .amount {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+        }
+
+        .price-note {
+            font-size: 0.82rem;
+            color: var(--ink-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .price-block h4 {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--ink);
+            margin-bottom: 12px;
+        }
+
+        .price-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .price-block li {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .price-block li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--ink-muted);
+        }
+
+        .price-block li strong {
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+
+        .timeline li {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 24px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--rule);
+            font-size: 0.9rem;
+        }
+
+        .timeline li:last-child {
+            border-bottom: none;
+        }
+
+        .timeline .phase {
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .timeline .detail {
+            color: var(--ink-light);
+        }
+
+        .timeline .detail strong {
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        .strategy {
+            font-size: 0.9rem;
+        }
+
+        .strategy strong {
+            font-weight: 500;
+        }
+
+        /* ── Footer ── */
+        footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid var(--rule);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--ink-muted);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .page { padding: 48px 24px 80px; }
+            h1 { font-size: 1.6rem; }
+            .collab-grid { grid-template-columns: 1fr; }
+            .price-main { flex-direction: column; gap: 8px; }
+            .timeline li { grid-template-columns: 80px 1fr; gap: 16px; }
+        }
+
+        /* ── Print ── */
         @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; margin: 0; max-width: 100%; }
+            body { background: white; }
+            .page { padding: 40px 0; max-width: 100%; }
+        }
+
+        /* ── Entrance animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header, section, footer {
+            animation: fadeUp 0.6s ease-out both;
+        }
+
+        section:nth-of-type(1) { animation-delay: 0.08s; }
+        section:nth-of-type(2) { animation-delay: 0.16s; }
+        section:nth-of-type(3) { animation-delay: 0.24s; }
+        section:nth-of-type(4) { animation-delay: 0.32s; }
+        section:nth-of-type(5) { animation-delay: 0.40s; }
+        footer { animation-delay: 0.48s; }
+
+        /* ── Sub-items ── */
+        .sub-table {
+            margin-top: 8px;
+            font-size: 0.84rem;
+            color: var(--ink-muted);
+            line-height: 1.6;
+        }
+
+        .sub-table dt {
+            font-weight: 500;
+            color: var(--ink-light);
+            margin-top: 4px;
+        }
+
+        .sub-table dd {
+            margin-left: 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        /* ── Group header row ── */
+        .group-header td {
+            padding-top: 24px;
+            padding-bottom: 8px;
+            border-bottom: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-muted) !important;
+            font-weight: 500 !important;
+        }
+
+        /* ── Steps list ── */
+        .steps {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            counter-reset: step;
+        }
+
+        .steps li {
+            font-size: 0.88rem;
+            color: var(--ink-light);
+            padding: 10px 0 10px 32px;
+            position: relative;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .steps li:last-child { border-bottom: none; }
+
+        .steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 10px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink-muted);
+        }
+
+        .steps li strong {
+            font-weight: 500;
+            color: var(--ink);
+        }
+
+        /* ── Note block ── */
+        .note-block {
+            background: var(--accent-soft);
+            border-left: 2px solid var(--accent);
+            padding: 16px 20px;
+            margin-top: 24px;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            line-height: 1.7;
+        }
+
+        .note-block strong {
+            font-weight: 500;
+            color: var(--ink);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="page">
+
     <header>
-        <h1>「後 #Metoo」展覽：AI 律師對談系統</h1>
+        <div class="header-label">Proposal</div>
+        <h1>「後 <em>#MeToo</em>」展覽<br>AI 律師對談系統</h1>
         <div class="subtitle">技術開發與協作方案建議書</div>
     </header>
 
-    <div class="section">
-        <h2>一、 合作模式：藝術與技術的專業分工</h2>
+    <section>
+        <h2><span class="num">01</span>合作模式：藝術與技術的專業分工</h2>
         <p>為確保展覽視覺美感與社會議題深度，建議採雙軌協作模式：</p>
         <div class="collab-grid">
             <div class="collab-card">
-                <h4>🎨 甲方（展覽方/藝術傳達）</h4>
+                <h4><span class="icon icon-art">甲</span>展覽方 / 藝術傳達</h4>
                 <ul>
-                    <li><strong>視覺 UI 設計：</strong> 提供網頁風格、律師頭像、標準字。</li>
-                    <li><strong>UX 互動規劃：</strong> 定義觀眾點擊路徑與按鈕文案。</li>
-                    <li><strong>素材提供：</strong> 訪談稿去識別化文本與導引問題。</li>
+                    <li><strong>視覺 UI 設計</strong> — 提供網頁風格、律師頭像、標準字</li>
+                    <li><strong>UX 互動規劃</strong> — 定義觀眾點擊路徑與按鈕文案</li>
+                    <li><strong>素材提供</strong> — 訪談稿去識別化文本與導引問題</li>
                 </ul>
             </div>
             <div class="collab-card">
-                <h4>💻 乙方（技術開發）</h4>
+                <h4><span class="icon icon-tech">乙</span>技術開發</h4>
                 <ul>
-                    <li><strong>AI 人設工程：</strong> 將訪談稿轉化為模型人格基底。</li>
-                    <li><strong>系統實作：</strong> 整合大語言模型 API 與前端介面。</li>
-                    <li><strong>安全防護：</strong> 設定預算熔斷、惡意言論過濾。</li>
+                    <li><strong>AI 人設工程</strong> — 將訪談稿轉化為模型人格基底</li>
+                    <li><strong>系統實作</strong> — 整合大語言模型 API 與前端介面</li>
+                    <li><strong>安全防護</strong> — 設定預算熔斷、惡意言論過濾</li>
                 </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2>二、 工作項目清單</h2>
+    <section>
+        <h2><span class="num">02</span>工作項目清單</h2>
         <table>
             <thead>
                 <tr>
@@ -178,71 +500,147 @@
                 </tr>
             </thead>
             <tbody>
+                <tr class="group-header"><td colspan="3">核心功能</td></tr>
                 <tr>
-                    <td><strong>人設建模 (Prompting)</strong></td>
-                    <td>7 位律師訪談稿處理與價值觀定義</td>
-                    <td><span class="badge badge-must">必要項目</span></td>
+                    <td>人設建模</td>
+                    <td>7 位律師訪談稿結構化處理；為每位律師撰寫獨立 System Prompt，定義法律立場、說話語氣與價值觀</td>
+                    <td><span class="tag tag-req">必要</span></td>
                 </tr>
                 <tr>
-                    <td><strong>核心對話系統</strong></td>
-                    <td>LLM API 串接與打字機效果實作</td>
-                    <td><span class="badge badge-must">必要項目</span></td>
+                    <td>核心對話系統</td>
+                    <td>LLM API 串接、串流輸出（Streaming）與打字機效果實作</td>
+                    <td><span class="tag tag-req">必要</span></td>
                 </tr>
                 <tr>
-                    <td><strong>預算控管與安全</strong></td>
-                    <td>每月預算硬上限設定與異常流量限制</td>
-                    <td><span class="badge badge-must">必要項目</span></td>
+                    <td>UI 介面開發</td>
+                    <td>律師角色選擇介面（頭像/代號）、8–10 個引導問題按鈕、響應式設計；視覺設計由甲方主導提供</td>
+                    <td><span class="tag tag-req">必要</span></td>
+                </tr>
+
+                <tr class="group-header"><td colspan="3">安全與預算控管</td></tr>
+                <tr>
+                    <td>內容邊界防護</td>
+                    <td>離題問題自動導回性平議題、攻擊性言論過濾、提示詞注入防禦</td>
+                    <td><span class="tag tag-req">必要</span></td>
                 </tr>
                 <tr>
-                    <td><strong>UI 介面開發</strong></td>
-                    <td>依甲方提供之設計稿實作互動介面</td>
-                    <td><span class="badge badge-must">必要項目</span></td>
+                    <td>預算熔斷機制</td>
+                    <td>API 月度使用上限設定，超額自動暫停服務</td>
+                    <td><span class="tag tag-req">必要</span></td>
                 </tr>
                 <tr>
-                    <td><strong>語意快取 (Cache)</strong></td>
-                    <td>節省重複問題之 API 成本 (約 30%+)</td>
-                    <td><span class="badge badge-opt">加選項目</span></td>
+                    <td>基本限流</td>
+                    <td>限制單一使用者發言頻率，防止惡意洗版與自動化攻擊</td>
+                    <td><span class="tag tag-req">必要</span></td>
                 </tr>
                 <tr>
-                    <td><strong>流量統計分析</strong></td>
-                    <td>分析觀眾關心議題分佈，供後續研究</td>
-                    <td><span class="badge badge-opt">加選項目</span></td>
+                    <td>內容審查</td>
+                    <td>訊息送交 LLM 前先經 Moderation API 過濾，違規內容直接拒絕，不消耗模型額度</td>
+                    <td><span class="tag tag-req">必要</span></td>
+                </tr>
+
+                <tr>
+                    <td>基本流量統計</td>
+                    <td>嵌入 Google Analytics，追蹤訪客數、裝置分佈、停留時間等基本指標</td>
+                    <td><span class="tag tag-req">必要</span></td>
+                </tr>
+
+                <tr class="group-header"><td colspan="3">加值項目</td></tr>
+                <tr>
+                    <td>進階流量防禦</td>
+                    <td>Cloudflare WAF 配置，阻擋惡意機器人與 DDoS；異常活動時觸發人機驗證（Turnstile）</td>
+                    <td><span class="tag tag-opt">加選</span></td>
+                </tr>
+                <tr>
+                    <td>語意快取</td>
+                    <td>相似問題重用已生成回答，降低約 30%+ API 成本並提升回應速度</td>
+                    <td><span class="tag tag-opt">加選</span></td>
+                </tr>
+                <tr>
+                    <td>對話行為分析</td>
+                    <td>自訂 logging 記錄觀眾最常問的問題、偏好律師、對話輪數等，展後提供去識別化研究報告</td>
+                    <td><span class="tag tag-opt">加選</span></td>
+                </tr>
+                <tr>
+                    <td>多語言擴充</td>
+                    <td>預留介面語言切換與 Prompt 翻譯空間，供未來國際交流需求</td>
+                    <td><span class="tag tag-opt">加選</span></td>
                 </tr>
             </tbody>
         </table>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2>三、 報價與費用配置</h2>
-        <div class="price-box">
-            <p><strong>技術開發勞務費用：</strong> <span class="price-tag">TWD 15,000</span></p>
-            <p style="font-size: 0.9rem; color: #555;">
-                * 此為開發者技術執行費用，不包含第三方平台支出。<br>
-                * 修改次數以兩次為限（依定案規格執行）。
+    <section>
+        <h2><span class="num">03</span>報價與費用配置</h2>
+        <div class="price-block">
+            <div class="price-main">
+                <span class="label">技術開發勞務費用</span>
+                <span class="amount">TWD 15,000</span>
+            </div>
+            <p class="price-note">
+                此為乙方技術執行費用（含人設建模、系統開發、安全防護），不包含第三方平台支出。<br>
+                視覺設計由甲方提供素材，乙方依設計稿實作。
             </p>
-            <hr>
-            <p><strong>由甲方負擔之實支實付項目：</strong></p>
+            <h4>甲方負擔之實支實付項目</h4>
             <ul>
-                <li><strong>LLM API 費用：</strong> 依展覽期間觀眾對話量計費（建議預算：USD 100 - 150）。</li>
-                <li><strong>雲端主機/網域：</strong> 視需求而定（若使用 Vercel 免費額度通常可涵蓋）。</li>
+                <li><strong>LLM API 費用</strong> — 依展覽期間觀眾對話量計費（建議預算：USD 100–150）</li>
+                <li><strong>雲端主機</strong> — 視需求而定（Vercel 免費額度通常可涵蓋中小型展覽流量）</li>
+                <li><strong>網域</strong> — 若需自訂網域，由甲方購買</li>
             </ul>
         </div>
-    </div>
+    </section>
 
-    <div class="section">
-        <h2>四、 預期時程</h2>
-        <p>本案採取<strong>「規格鎖定，快速開發」</strong>策略：</p>
-        <ul>
-            <li><strong>前置期：</strong> 雙方確認 7 位律師人設邏輯與 UI 設計圖。</li>
-            <li><strong>開發期：</strong> 規格定案後，預計 <strong>1 - 3 個工作日</strong> 完成系統開發。</li>
-            <li><strong>測試期：</strong> 進行壓力測試與邊界設定調整。</li>
-            <li><strong>交付期：</strong> 三月底前正式上線佈署。</li>
+    <section>
+        <h2><span class="num">04</span>帳號權限與費用支付方式</h2>
+        <p>採「<strong>甲方持有帳號，乙方持有開發權限</strong>」模式，確保費用透明、帳單歸屬明確：</p>
+
+        <h4 style="margin-top: 24px; font-weight: 500; font-size: 0.9rem;">LLM API 帳號設定</h4>
+        <ol class="steps">
+            <li>甲方以官方 Email 註冊 API 帳號（如 Anthropic / OpenAI）</li>
+            <li>於 Billing 頁面<strong>綁定甲方信用卡</strong>，帳單直接歸屬甲方</li>
+            <li>設定 <strong>Monthly Budget Cap</strong>（建議 USD 100–150），超額自動停止，避免意外費用</li>
+            <li>於 Members / IAM 頁面邀請乙方 Email 為 Developer，乙方取得 API Key 管理權限</li>
+        </ol>
+
+        <h4 style="margin-top: 24px; font-weight: 500; font-size: 0.9rem;">雲端平台帳號設定</h4>
+        <ol class="steps">
+            <li>甲方以展覽單位名義註冊 Vercel（或 Cloudflare）帳號</li>
+            <li>將乙方設為 <strong>Collaborator / Admin</strong>，由乙方負責程式碼部署</li>
+            <li>展覽結束後，乙方移除自身權限，帳號完整歸還甲方</li>
+        </ol>
+
+        <div class="note-block" style="margin-top: 24px;">
+            <strong>為什麼這樣做？</strong> 乙方不經手任何金流，甲方可隨時在後台查看用量與帳單。展後所有帳號、程式碼、資料皆歸甲方所有。
+        </div>
+    </section>
+
+    <section>
+        <h2><span class="num">05</span>預期時程</h2>
+        <p class="strategy">以固定討論頻率推進，每次討論後交付可操作的 prototype：</p>
+        <ul class="timeline">
+            <li>
+                <span class="phase">開發期</span>
+                <span class="detail">每週討論 <strong>2 次</strong>，每次討論後更新 prototype 供甲方確認</span>
+            </li>
+            <li>
+                <span class="phase">收尾期</span>
+                <span class="detail">上線前一週改為<strong>每日討論</strong>，快速迭代細節與修正</span>
+            </li>
+            <li>
+                <span class="phase">交付</span>
+                <span class="detail">三月底前正式上線佈署</span>
+            </li>
         </ul>
-    </div>
+
+        <div class="note-block" style="margin-top: 24px;">
+            <strong>建議：</strong>展覽介面顯眼處加註「AI 生成內容僅供參考，不代表律師之正式法律建議」。此為法律相關展覽之必要聲明。
+        </div>
+    </section>
 
     <footer>
         <p>本提案僅供初步討論，細節可依實際需求微調。</p>
     </footer>
+
 </div>
 
 </body>
