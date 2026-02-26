@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「後 #Metoo」展覽 AI 律師對話系統 - 開發提案</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #c0392b;
+            --bg-color: #f9f9f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --secondary-text: #666;
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            color: var(--secondary-text);
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 40px;
+            font-size: 1.4rem;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .badge-must { background-color: #e8f4fd; color: #2980b9; }
+        .badge-opt { background-color: #fef9e7; color: #f39c12; }
+
+        .price-box {
+            background: #fdf2f2;
+            border: 1px dashed var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .collab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .collab-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .collab-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--secondary-text);
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>「後 #Metoo」展覽：AI 律師對談系統</h1>
+        <div class="subtitle">技術開發與協作方案建議書</div>
+    </header>
+
+    <div class="section">
+        <h2>一、 合作模式：藝術與技術的專業分工</h2>
+        <p>為確保展覽視覺美感與社會議題深度，建議採雙軌協作模式：</p>
+        <div class="collab-grid">
+            <div class="collab-card">
+                <h4>🎨 甲方（展覽方/藝術傳達）</h4>
+                <ul>
+                    <li><strong>視覺 UI 設計：</strong> 提供網頁風格、律師頭像、標準字。</li>
+                    <li><strong>UX 互動規劃：</strong> 定義觀眾點擊路徑與按鈕文案。</li>
+                    <li><strong>素材提供：</strong> 訪談稿去識別化文本與導引問題。</li>
+                </ul>
+            </div>
+            <div class="collab-card">
+                <h4>💻 乙方（技術開發）</h4>
+                <ul>
+                    <li><strong>AI 人設工程：</strong> 將訪談稿轉化為模型人格基底。</li>
+                    <li><strong>系統實作：</strong> 整合大語言模型 API 與前端介面。</li>
+                    <li><strong>安全防護：</strong> 設定預算熔斷、惡意言論過濾。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>二、 工作項目清單</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>項目</th>
+                    <th>說明</th>
+                    <th>類別</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>人設建模 (Prompting)</strong></td>
+                    <td>7 位律師訪談稿處理與價值觀定義</td>
+                    <td><span class="badge badge-must">必要項目</span></td>
+                </tr>
+                <tr>
+                    <td><strong>核心對話系統</strong></td>
+                    <td>LLM API 串接與打字機效果實作</td>
+                    <td><span class="badge badge-must">必要項目</span></td>
+                </tr>
+                <tr>
+                    <td><strong>預算控管與安全</strong></td>
+                    <td>每月預算硬上限設定與異常流量限制</td>
+                    <td><span class="badge badge-must">必要項目</span></td>
+                </tr>
+                <tr>
+                    <td><strong>UI 介面開發</strong></td>
+                    <td>依甲方提供之設計稿實作互動介面</td>
+                    <td><span class="badge badge-must">必要項目</span></td>
+                </tr>
+                <tr>
+                    <td><strong>語意快取 (Cache)</strong></td>
+                    <td>節省重複問題之 API 成本 (約 30%+)</td>
+                    <td><span class="badge badge-opt">加選項目</span></td>
+                </tr>
+                <tr>
+                    <td><strong>流量統計分析</strong></td>
+                    <td>分析觀眾關心議題分佈，供後續研究</td>
+                    <td><span class="badge badge-opt">加選項目</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>三、 報價與費用配置</h2>
+        <div class="price-box">
+            <p><strong>技術開發勞務費用：</strong> <span class="price-tag">TWD 15,000</span></p>
+            <p style="font-size: 0.9rem; color: #555;">
+                * 此為開發者技術執行費用，不包含第三方平台支出。<br>
+                * 修改次數以兩次為限（依定案規格執行）。
+            </p>
+            <hr>
+            <p><strong>由甲方負擔之實支實付項目：</strong></p>
+            <ul>
+                <li><strong>LLM API 費用：</strong> 依展覽期間觀眾對話量計費（建議預算：USD 100 - 150）。</li>
+                <li><strong>雲端主機/網域：</strong> 視需求而定（若使用 Vercel 免費額度通常可涵蓋）。</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>四、 預期時程</h2>
+        <p>本案採取<strong>「規格鎖定，快速開發」</strong>策略：</p>
+        <ul>
+            <li><strong>前置期：</strong> 雙方確認 7 位律師人設邏輯與 UI 設計圖。</li>
+            <li><strong>開發期：</strong> 規格定案後，預計 <strong>1 - 3 個工作日</strong> 完成系統開發。</li>
+            <li><strong>測試期：</strong> 進行壓力測試與邊界設定調整。</li>
+            <li><strong>交付期：</strong> 三月底前正式上線佈署。</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>本提案僅供初步討論，細節可依實際需求微調。</p>
+    </footer>
+</div>
+
+</body>
+</html>
